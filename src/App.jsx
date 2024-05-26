@@ -6,7 +6,7 @@ import {
   sigmaVariable,
   printQuadratics,
   formatNumber,
-} from "./utils";
+} from "./utils.js";
 
 function App() {
   const [x, setX] = useState("");
