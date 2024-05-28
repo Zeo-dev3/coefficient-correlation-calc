@@ -34,7 +34,7 @@ export const sigmaVariable = (independent, dependent) => {
     sigmaY += dependent[i];
   }
 
-  return [`sigma X adalah ${sigmaX}`, `sigma Y adalah ${sigmaY}`];
+  return [`ΣX adalah ${sigmaX}`, `ΣY adalah ${sigmaY}`];
 };
 
 export const productOfPairs = (independent, dependent) => {
@@ -43,9 +43,11 @@ export const productOfPairs = (independent, dependent) => {
   for (let i = 0; i < independent.length; i++) {
     const product = independent[i] * dependent[i];
     sigmaXy += product;
-    results.push(`x.y ke-${i + 1} x.y = ${product}`);
+    results.push(
+      `x.y<sub>${i + 1}</sub> ${independent[i]} × ${dependent[i]} = ${product}`
+    );
   }
-  results.push(`sigma x.y adalah ${sigmaXy}`);
+  results.push(`Σx.y adalah ${sigmaXy}`);
   return results;
 };
 
@@ -55,10 +57,16 @@ export const printQuadratics = (data, label) => {
   for (let i = 0; i < data.length; i++) {
     const quadratic = data[i] ** 2;
     sigma += quadratic;
-    results.push(`${label}^2 ke-${i + 1} ${label}^2 = ${quadratic}`);
+    results.push(
+      `${label}<sub>${i + 1}</sub> (${data[i]})<sup>2</sup> = ${quadratic}`
+    );
   }
-  results.push(`sigma ${label}^2 adalah ${sigma}`);
+  results.push(`Σ${label}<sup>2</sup> adalah ${sigma}`);
   return results;
+};
+
+export const sumOfSquares = (data, label) => {
+  return `Σ${label}<sup>2</sup> adalah ${data ** 2}`;
 };
 
 // coeficient function
@@ -75,7 +83,6 @@ export const correlationCoefficient = (x, y) => {
     (n * sumX2 - sumX ** 2) * (n * sumY2 - sumY ** 2)
   );
 
-  // Format denominator to two decimal places
   denominator = parseFloat(denominator);
 
   const correlation = numerator / denominator;

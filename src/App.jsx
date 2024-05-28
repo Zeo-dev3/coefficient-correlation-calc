@@ -8,6 +8,7 @@ import {
   correlationCoefficient,
   coefficientOfDetermination,
   coefficientOfDeterminationPersentation,
+  sumOfSquares,
 } from "./utils.js";
 
 function App() {
@@ -21,6 +22,31 @@ function App() {
     const parseX = x.split(",").map(Number);
     const parseY = y.split(",").map(Number);
 
+    //validasi length dataset
+    if (parseX.length < 3 || parseY.length < 3) {
+      window.alert("Ukuran dataset terlalu kecil");
+    }
+
+    //validasi input string kosong
+    if (x.trim() === "" || y.trim() === "") {
+      window.alert("Input data X dan Y tidak boleh kosong");
+      return;
+    }
+
+    //validasi jumlah dataset
+    if (parseX.length !== parseY.length) {
+      window.alert("Jumlah data X dan Y harus sama");
+      return true;
+    }
+
+    //validasi tipe data
+    for (let i = 0; i < parseX.length; i++) {
+      if (isNaN(parseX[i]) || isNaN(parseY[i])) {
+        window.alert("Tolong masukkan angka yang valid");
+        return true;
+      }
+    }
+
     const meanX = mean(parseX);
     const meanY = mean(parseY);
 
@@ -31,6 +57,9 @@ function App() {
     const productPairs = productOfPairs(parseX, parseY);
     const quadraticsX = printQuadratics(parseX, "x");
     const quadraticsY = printQuadratics(parseY, "y");
+
+    const sumOfSquaresX = sumOfSquares(sigmaX, "x");
+    const sumOfSquaresY = sumOfSquares(sigmaY, "y");
 
     const correlation = correlationCoefficient(parseX, parseY);
     const determination = coefficientOfDetermination(correlation);
@@ -44,6 +73,8 @@ function App() {
       productPairs,
       quadraticsX,
       quadraticsY,
+      sumOfSquaresX,
+      sumOfSquaresY,
       correlation: correlation,
       determination: determination,
       determinationPersentation:
@@ -141,20 +172,32 @@ function App() {
             <div className="mt-4">
               <h3 className="text-lg font-medium">Product of Pairs</h3>
               {results.productPairs.map((res, index) => (
-                <p key={index}>{res}</p>
+                <p key={index} dangerouslySetInnerHTML={{ __html: res }}></p>
               ))}
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-medium">Quadratics X</h3>
               {results.quadraticsX.map((res, index) => (
-                <p key={index}>{res}</p>
+                <p key={index} dangerouslySetInnerHTML={{ __html: res }}></p>
               ))}
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-medium">Quadratics Y</h3>
               {results.quadraticsY.map((res, index) => (
-                <p key={index}>{res}</p>
+                <p key={index} dangerouslySetInnerHTML={{ __html: res }}></p>
               ))}
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium">Sum of Squares X</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: results.sumOfSquaresX }}
+              ></p>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium">Sum of Squares Y</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: results.sumOfSquaresY }}
+              ></p>
             </div>
             <div className="mt-4">
               <h3 className="text-lg font-medium">Correlation</h3>
