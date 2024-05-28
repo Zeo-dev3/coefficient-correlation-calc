@@ -66,22 +66,33 @@ function App() {
           i
         </button>
         {showInfo && (
-          <div className="absolute top-12 right-4 bg-white p-4 border border-gray-300 rounded-lg shadow-lg w-64">
+          <div className="absolute top-12 right-4 bg-white p-4 border border-gray-300 rounded-lg shadow-lg w-96">
             <h2 className="text-lg font-semibold">Information</h2>
             <p>
               This tool allows you to calculate various statistical metrics
               including mean, sum, correlation coefficient, and coefficient of
-              determination based on input data sets X and Y.
+              determination based on input data sets X and Y.{" "}
+              <strong>
+                The correlation coefficient is rounded to two decimal places.
+              </strong>
             </p>
-            <a href=""></a>
+            <a
+              href="https://github.com/Zeo-dev3/coefficient-correlation-calc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-blue-500 mt-2 hover:underline"
+            >
+              Link to this project on GitHub
+            </a>
             <button
-              className="mt-2 text-blue-500 hover:underline"
+              className="block mt-2 text-blue-500 hover:underline"
               onClick={() => setShowInfo(false)}
             >
               Close
             </button>
           </div>
         )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700">Data X:</label>

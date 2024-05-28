@@ -82,8 +82,7 @@ export const correlationCoefficient = (x, y) => {
 
   // Format denominator to two decimal places
   denominator = parseFloat(denominator.toFixed(2));
-  console.log("denominator:", denominator);
-  console.log("numerator:", numerator);
+
   const correlation = numerator / denominator;
   return parseFloat(correlation.toFixed(2));
 };
