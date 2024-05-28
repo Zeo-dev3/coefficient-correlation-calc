@@ -6,12 +6,16 @@ import {
   sigmaVariable,
   printQuadratics,
   formatNumber,
+  correlationCoefficient,
+  coefficientOfDetermination,
+  coefficientOfDeterminationPersentation,
 } from "./utils.js";
 
 function App() {
   const [x, setX] = useState("");
   const [y, setY] = useState("");
   const [results, setResults] = useState({});
+  const [showInfo, setShowInfo] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +33,9 @@ function App() {
     const quadraticsX = printQuadratics(parseX, "x");
     const quadraticsY = printQuadratics(parseY, "y");
 
+    const correlation = correlationCoefficient(parseX, parseY);
+    const determination = coefficientOfDetermination(correlation);
+
     setResults({
       meanX: formatNumber(meanX),
       meanY: formatNumber(meanY),
@@ -38,15 +45,43 @@ function App() {
       productPairs,
       quadraticsX,
       quadraticsY,
+      correlation: formatNumber(correlation),
+      determination: formatNumber(determination),
+      determinationPersentation:
+        coefficientOfDeterminationPersentation(determination),
     });
   };
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl relative">
         <h1 className="text-2xl font-bold mb-4 text-center">
           Statistical Calculator
         </h1>
+        <button
+          className="absolute top-4 right-4 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-700"
+          style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+          onClick={() => setShowInfo(!showInfo)}
+        >
+          i
+        </button>
+        {showInfo && (
+          <div className="absolute top-12 right-4 bg-white p-4 border border-gray-300 rounded-lg shadow-lg w-64">
+            <h2 className="text-lg font-semibold">Information</h2>
+            <p>
+              This tool allows you to calculate various statistical metrics
+              including mean, sum, correlation coefficient, and coefficient of
+              determination based on input data sets X and Y.
+            </p>
+            <a href=""></a>
+            <button
+              className="mt-2 text-blue-500 hover:underline"
+              onClick={() => setShowInfo(false)}
+            >
+              Close
+            </button>
+          </div>
+        )}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700">Data X:</label>
@@ -113,6 +148,20 @@ function App() {
               {results.quadraticsY.map((res, index) => (
                 <p key={index}>{res}</p>
               ))}
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium">Correlation</h3>
+              <p>{results.correlation}</p>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium">
+                Coefficient of Determination
+              </h3>
+              <p>{results.determination}</p>
+            </div>
+            <div className="mt-4">
+              <h3 className="text-lg font-medium">Determination Percentage</h3>
+              <p>{results.determinationPersentation}</p>
             </div>
           </div>
         )}

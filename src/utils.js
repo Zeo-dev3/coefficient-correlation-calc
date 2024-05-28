@@ -65,3 +65,33 @@ export const printQuadratics = (data, label) => {
   results.push(`sigma ${label}^2 adalah ${formatNumber(sigma)}`);
   return results;
 };
+
+// coeficient function
+export const correlationCoefficient = (x, y) => {
+  const n = x.length;
+  const sumX = sum(x);
+  const sumY = sum(y);
+  const sumXY = x.reduce((acc, _, i) => acc + x[i] * y[i], 0);
+  const sumX2 = x.reduce((acc, xi) => acc + xi ** 2, 0);
+  const sumY2 = y.reduce((acc, yi) => acc + yi ** 2, 0);
+
+  const numerator = n * sumXY - sumX * sumY;
+  let denominator = Math.sqrt(
+    (n * sumX2 - sumX ** 2) * (n * sumY2 - sumY ** 2)
+  );
+
+  // Format denominator to two decimal places
+  denominator = parseFloat(denominator.toFixed(2));
+  console.log("denominator:", denominator);
+  console.log("numerator:", numerator);
+  const correlation = numerator / denominator;
+  return parseFloat(correlation.toFixed(2));
+};
+
+export const coefficientOfDetermination = (r) => {
+  return parseFloat((r ** 2).toFixed(2));
+};
+
+export const coefficientOfDeterminationPersentation = (r) => {
+  return `${formatNumber(r * 100)}%`;
+};
