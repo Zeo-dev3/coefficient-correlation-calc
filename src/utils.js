@@ -34,10 +34,7 @@ export const sigmaVariable = (independent, dependent) => {
     sigmaY += dependent[i];
   }
 
-  return [
-    `sigma X adalah ${formatNumber(sigmaX)}`,
-    `sigma Y adalah ${formatNumber(sigmaY)}`,
-  ];
+  return [`sigma X adalah ${sigmaX}`, `sigma Y adalah ${sigmaY}`];
 };
 
 export const productOfPairs = (independent, dependent) => {
@@ -46,9 +43,9 @@ export const productOfPairs = (independent, dependent) => {
   for (let i = 0; i < independent.length; i++) {
     const product = independent[i] * dependent[i];
     sigmaXy += product;
-    results.push(`x.y ke-${i + 1} x.y = ${formatNumber(product)}`);
+    results.push(`x.y ke-${i + 1} x.y = ${product}`);
   }
-  results.push(`sigma x.y adalah ${formatNumber(sigmaXy)}`);
+  results.push(`sigma x.y adalah ${sigmaXy}`);
   return results;
 };
 
@@ -58,11 +55,9 @@ export const printQuadratics = (data, label) => {
   for (let i = 0; i < data.length; i++) {
     const quadratic = data[i] ** 2;
     sigma += quadratic;
-    results.push(
-      `${label}^2 ke-${i + 1} ${label}^2 = ${formatNumber(quadratic)}`
-    );
+    results.push(`${label}^2 ke-${i + 1} ${label}^2 = ${quadratic}`);
   }
-  results.push(`sigma ${label}^2 adalah ${formatNumber(sigma)}`);
+  results.push(`sigma ${label}^2 adalah ${sigma}`);
   return results;
 };
 
@@ -81,16 +76,16 @@ export const correlationCoefficient = (x, y) => {
   );
 
   // Format denominator to two decimal places
-  denominator = parseFloat(denominator.toFixed(2));
+  denominator = parseFloat(denominator);
 
   const correlation = numerator / denominator;
-  return parseFloat(correlation.toFixed(2));
+  return parseFloat(correlation);
 };
 
 export const coefficientOfDetermination = (r) => {
-  return parseFloat((r ** 2).toFixed(2));
+  return parseFloat(r ** 2);
 };
 
 export const coefficientOfDeterminationPersentation = (r) => {
-  return `${formatNumber(r * 100)}%`;
+  return `${r * 100}%`;
 };

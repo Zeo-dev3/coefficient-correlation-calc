@@ -5,7 +5,6 @@ import {
   productOfPairs,
   sigmaVariable,
   printQuadratics,
-  formatNumber,
   correlationCoefficient,
   coefficientOfDetermination,
   coefficientOfDeterminationPersentation,
@@ -37,16 +36,16 @@ function App() {
     const determination = coefficientOfDetermination(correlation);
 
     setResults({
-      meanX: formatNumber(meanX),
-      meanY: formatNumber(meanY),
-      sigmaX: formatNumber(sigmaX),
-      sigmaY: formatNumber(sigmaY),
+      meanX: meanX,
+      meanY: meanY,
+      sigmaX: sigmaX,
+      sigmaY: sigmaY,
       sigmaVariables,
       productPairs,
       quadraticsX,
       quadraticsY,
-      correlation: formatNumber(correlation),
-      determination: formatNumber(determination),
+      correlation: correlation,
+      determination: determination,
       determinationPersentation:
         coefficientOfDeterminationPersentation(determination),
     });
@@ -66,15 +65,12 @@ function App() {
           i
         </button>
         {showInfo && (
-          <div className="absolute top-12 right-4 bg-white p-4 border border-gray-300 rounded-lg shadow-lg w-96">
+          <div className="absolute top-16 right-1/2 transform translate-x-1/2 sm:right-4 sm:translate-x-0 bg-white p-4 border border-gray-300 rounded-lg shadow-lg w-11/12 sm:w-96">
             <h2 className="text-lg font-semibold">Information</h2>
             <p>
               This tool allows you to calculate various statistical metrics
               including mean, sum, correlation coefficient, and coefficient of
-              determination based on input data sets X and Y.{" "}
-              <strong>
-                The correlation coefficient is rounded to two decimal places.
-              </strong>
+              determination based on input data sets X and Y.
             </p>
             <a
               href="https://github.com/Zeo-dev3/coefficient-correlation-calc"
