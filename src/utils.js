@@ -5,6 +5,7 @@ export const formatNumber = (number) => {
   }).format(number);
 };
 
+//function untuk menghitung mean
 export const mean = (data) => {
   let total = 0;
   for (let i = 0; i < data.length; i++) {
@@ -14,6 +15,7 @@ export const mean = (data) => {
   return parseFloat(result.toFixed(2));
 };
 
+//function untuk menghitung sum
 export const sum = (data) => {
   let total = 0;
   for (let i = 0; i < data.length; i++) {
@@ -22,6 +24,7 @@ export const sum = (data) => {
   return total;
 };
 
+//function untuk menghitung sigma
 export const sigmaVariable = (independent, dependent) => {
   let sigmaX = 0;
   let sigmaY = 0;
@@ -37,6 +40,7 @@ export const sigmaVariable = (independent, dependent) => {
   return [`ΣX adalah ${sigmaX}`, `ΣY adalah ${sigmaY}`];
 };
 
+//function untuk x.y
 export const productOfPairs = (independent, dependent) => {
   let sigmaXy = 0;
   const results = [];
@@ -51,6 +55,7 @@ export const productOfPairs = (independent, dependent) => {
   return results;
 };
 
+//function untuk menghitung Σvar^2
 export const printQuadratics = (data, label) => {
   let sigma = 0;
   const results = [];
