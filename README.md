@@ -19,5 +19,3 @@ Aplikasi ini adalah sebuah kalkulator statistik sederhana yang dikembangkan meng
 App ini menggunakan format angka notasi desimal Inggris
 
 ---
-
-Dengan penjelasan ini, pengguna akan memiliki pemahaman yang lebih baik tentang fungsionalitas dan tujuan dari aplikasi statistik ini.
